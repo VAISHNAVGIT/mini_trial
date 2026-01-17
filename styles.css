@@ -95,23 +95,19 @@ header {
     font-size: 2rem;
     font-weight: bold;
     color: var(--accent-color);
-    animation: bounce 2s infinite;
+    animation: fade 2s infinite;
 }
 
-@keyframes bounce {
-    0%, 100% {
-        transform: translateY(0);
+@keyframes fade {
+    0% {
+        opacity: 0;
     }
     50% {
-        transform: translateY(-8px);
+        opacity: 1;
     }
-}
-
-.header-title {
-    font-size: 1.3rem;
-    font-weight: 600;
-    color: var(--text-primary);
-    letter-spacing: 0.5px;
+    100% {
+        opacity: 0;
+    }
 }
 
 .theme-toggle {
@@ -698,3 +694,4 @@ tbody tr:hover {
         background-position: 1000px 0;
     }
 }
+
