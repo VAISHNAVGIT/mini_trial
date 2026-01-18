@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dairy Farm Monitoring System</title>
+   <link rel="stylesheet" href="styles.css">
+    <style>
+    </style>
+</head>
+<body>
+    <!-- Header with Theme Toggle -->
+    <header>
+        <div class="header-left">
+            <div class="logo">🐄</div>
+            <div class="header-title">Dairy Farm Monitoring System</div>
+        </div>
+        <div class="header-right" style="display: flex; gap: 1.5rem; align-items: center;">
+            <button class="theme-toggle" id="themeToggle" title="Toggle Dark/Light Mode">
+                🌙
+            </button>
+            <button class="btn btn-secondary btn-sm" onclick="goToAdmin()" title="Admin Panel" style="display: none;" id="adminBtn">⚙️ Admin</button>
+            <button class="btn btn-secondary btn-sm" onclick="logout()" title="Logout">🚪 Logout</button>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Sensor Data Dashboard -->
+        <div class="dashboard">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">📊</div>
+                    <div class="card-title">Temperature Sensor</div>
+                </div>
+                <div class="card-content">
+                    <div class="sensor-data">
+                        <div class="data-item">
+                            <div class="data-label">Current</div>
+                            <div class="data-value">24.5°C</div>
+                        </div>
+                        <div class="data-item">
+                            <div class="data-label">Status</div>
+                            <div class="data-value">✓ Normal</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">💧</div>
+                    <div class="card-title">Water Level</div>
+                </div>
+                <div class="card-content">
+                    <div class="sensor-data">
+                        <div class="data-item">
+                            <div class="data-label">Current</div>
+                            <div class="data-value">1250L</div>
+                        </div>
+                        <div class="data-item">
+                            <div class="data-label">Status</div>
+                            <div class="data-value">✓ Optimal</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">🌾</div>
+                    <div class="card-title">Feed Supply</div>
+                </div>
+                <div class="card-content">
+                    <div class="sensor-data">
+                        <div class="data-item">
+                            <div class="data-label">Available</div>
+                            <div class="data-value">850kg</div>
+                        </div>
+                        <div class="data-item">
+                            <div class="data-label">Status</div>
+                            <div class="data-value">✓ Good</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">🐮</div>
+                    <div class="card-title">Total Cattle</div>
+                </div>
+                <div class="card-content">
+                    <div class="sensor-data">
+                        <div class="data-item">
+                            <div class="data-label">Count</div>
+                            <div class="data-value">45</div>
+                        </div>
+                        <div class="data-item">
+                            <div class="data-label">Status</div>
+                            <div class="data-value">✓ Healthy</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Emergency Alerts -->
+        <div class="alerts-section">
+            <h2 class="section-title">🚨 Emergency Alerts</h2>
+            <div class="alert-item danger">
+                <div class="alert-text">
+                    <div class="alert-title">Cow #12 - High Temperature</div>
+                    <div class="alert-message">Body temperature exceeded 39.5°C. Immediate medical attention required.</div>
+                </div>
+                <div class="alert-time">5 mins ago</div>
+            </div>
+            <div class="alert-item warning">
+                <div class="alert-text">
+                    <div class="alert-title">Geofence Breach - Cow #08</div>
+                    <div class="alert-message">Cow #08 has left the designated grazing area.</div>
+                </div>
+                <div class="alert-time">12 mins ago</div>
+            </div>
+            <div class="alert-item info">
+                <div class="alert-text">
+                    <div class="alert-title">Milking Schedule Due</div>
+                    <div class="alert-message">20 cattle are due for milking in the next 30 minutes.</div>
+                </div>
+                <div class="alert-time">35 mins ago</div>
+            </div>
+            <div class="alert-item success">
+                <div class="alert-text">
+                    <div class="alert-title">Health Check Completed</div>
+                    <div class="alert-message">Routine health check for 15 cattle completed successfully.</div>
+                </div>
+                <div class="alert-time">2 hours ago</div>
+            </div>
+        </div>
+
+        <!-- Geofencing Map Section -->
+        <div class="geofence-section">
+            <h2 class="section-title">📍 Geo-Fencing Map</h2>
+            <div class="map-placeholder">
+                🗺️ Map integration (Google Maps / Leaflet)
+            </div>
+            <p style="margin-top: 1rem; color: var(--text-secondary); font-size: 0.9rem;">
+                Current Grazing Zone: Field A | Active Cattle: 38 | Out of Zone: 2
+            </p>
+        </div>
+
+        <!-- Cattle Database -->
+        <div class="cattle-section">
+            <h2 class="section-title">🗂️ Cattle Database</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Age</th>
+                        <th>Health Status</th>
+                        <th>Last Checkup</th>
+                        <th>Details</th>
+                        <th>Date of Birth</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>#001</td>
+                        <td>GOpeee</td>
+                        <td>4 years</td>
+                        <td><span class="health-badge healthy">Healthy</span></td>
+                        <td>Jan 5, 2026</td>
+                        <td><button class="btn btn-sm btn-secondary" onclick="toggleCattleDetails(this)">View</button></td>
+                        <td>Jan 5, 2022</td>
+                    </tr>
+                    <tr class="cattle-row-details">
+                        <td colspan="6">
+                            <div class="medicine-history">
+                                <h4 style="color: var(--text-primary); margin-bottom: 0.8rem;">📋 Medicine History</h4>
+                                <div class="history-item">
+                                    <div class="history-date">January 5, 2026</div>
+                                    <div class="history-medicine">Vitamin B12 Injection</div>
+                                    <div class="history-dosage">Dosage: 100ml | Veterinarian: Dr. Smith</div>
+                                </div>
+                                <div class="history-item">
+                                    <div class="history-date">December 28, 2025</div>
+                                    <div class="history-medicine">Antibiotic Tablets</div>
+                                    <div class="history-dosage">Dosage: 500mg x 2 daily for 7 days | Veterinarian: Dr. Johnson</div>
+                                </div>
+                                <div class="history-item">
+                                    <div class="history-date">December 15, 2025</div>
+                                    <div class="history-medicine">Anti-Parasitic Treatment</div>
+                                    <div class="history-dosage">Dosage: Oral | Veterinarian: Dr. Smith</div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>#002</td>
+                        <td>Gopika</td>
+                        <td>6 years</td>
+                        <td><span class="health-badge warning">Under Observation</span></td>
+                        <td>Jan 3, 2026</td>
+                        <td><button class="btn btn-sm btn-secondary" onclick="toggleCattleDetails(this)">View</button></td>
+                        <td>Jan 5, 2020</td>
+                    </tr>
+                    <tr class="cattle-row-details">
+                        <td colspan="6">
+                            <div class="medicine-history">
+                                <h4 style="color: var(--text-primary); margin-bottom: 0.8rem;">📋 Medicine History</h4>
+                                <div class="history-item">
+                                    <div class="history-date">January 3, 2026</div>
+                                    <div class="history-medicine">Pain Relief Medication</div>
+                                    <div class="history-dosage">Dosage: 250mg | Veterinarian: Dr. Johnson</div>
+                                </div>
+                                <div class="history-item">
+                                    <div class="history-date">January 1, 2026</div>
+                                    <div class="history-medicine">Anti-Inflammatory Injection</div>
+                                    <div class="history-dosage">Dosage: 50ml | Veterinarian: Dr. Smith</div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>#003</td>
+                        <td>gopika arun menon</td>
+                        <td>3 years</td>
+                        <td><span class="health-badge healthy">Healthy</span></td>
+                        <td>Jan 6, 2026</td>
+                        <td><button class="btn btn-sm btn-secondary" onclick="toggleCattleDetails(this)">View</button></td>
+                        <td>Jan 5, 2023</td>
+                    </tr>
+                    <tr class="cattle-row-details">
+                        <td colspan="6">
+                            <div class="medicine-history">
+                                <h4 style="color: var(--text-primary); margin-bottom: 0.8rem;">📋 Medicine History</h4>
+                                <div class="history-item">
+                                    <div class="history-date">January 6, 2026</div>
+                                    <div class="history-medicine">Routine Vaccination</div>
+                                    <div class="history-dosage">Vaccine Type: Bovine Viral Diarrhea | Veterinarian: Dr. Johnson</div>
+                                </div>
+                                <div class="history-item">
+                                    <div class="history-date">November 15, 2025</div>
+                                    <div class="history-medicine">Deworming Tablet</div>
+                                    <div class="history-dosage">Dosage: 1 tablet | Veterinarian: Dr. Smith</div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>#004</td>
+                        <td>go peee kaaa</td>
+                        <td>2 years</td>
+                        <td><span class="health-badge critical">Critical</span></td>
+                        <td>Jan 7, 2026</td>
+                        <td><button class="btn btn-sm btn-secondary" onclick="toggleCattleDetails(this)">View</button></td>
+                        <td>Jan 5, 2024</td>
+                    </tr>
+                    <tr class="cattle-row-details">
+                        <td colspan="6">
+                            <div class="medicine-history">
+                                <h4 style="color: var(--text-primary); margin-bottom: 0.8rem;">📋 Medicine History</h4>
+                                <div class="history-item">
+                                    <div class="history-date">January 7, 2026</div>
+                                    <div class="history-medicine">Emergency Treatment</div>
+                                    <div class="history-dosage">Diagnosis: Mastitis | Treatment: IV Fluids + Antibiotics | Veterinarian: Dr. Smith</div>
+                                </div>
+                                <div class="history-item">
+                                    <div class="history-date">January 5, 2026</div>
+                                    <div class="history-medicine">Initial Diagnosis</div>
+                                    <div class="history-dosage">Condition: Elevated Temperature | Veterinarian: Dr. Johnson</div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
